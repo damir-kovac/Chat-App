@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;
+}
+
+.App{
+    margin: auto;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80vh;
+    margin-top: 50px;
+}
+.heading{
+    text-align: center;
+    height: 60px;
+}
+
+/* ________________________________________ */
+
+#messages_container{
+    height: auto;
+    overflow-y:scroll;
+}
+
+
+
+/* ________________________________________ */
+
+#inputField{
+    height: 30px;
+    width: 100%;
+}
+
+#inputField form {
+    height: 100%;
+}
+
+#inputField input {
+    height: 100%;
+    width: 90%;
+}
+
+#inputField button{
+    height: 100%;
+    width: 10%;
+}
