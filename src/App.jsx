@@ -1,59 +1,24 @@
-import React, { Component } from 'react'
-import InputField from './InputField'
-import Messages from './Messages'
+import React, { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ChatRoom from './pages/ChatRoom'
+import LoginPage from './pages/LoginPage'
 
+const App = () => {
 
-class App extends Component {
-
-    state = {
-        messages: [],
-        user: {
-          name: "Damir",
-          color: "blue"
-        }
+    const [user, setUser] = useState({});
+    
+    const transferUserInfo = (userInfo) =>{
+        setUser(userInfo);
     }
 
-    constructor (){
-        super();
-        
-        this.drone = new window.Scaledrone("RAdRBc9kPhGqhHXS", {
-            data: this.state.user
-        });
-        this.drone.on('open', error => {
-            if (error) {
-              return console.error(error);
-            }
-            const user = {...this.state.user};
-            user.id = this.drone.clientId;
-            this.setState({user});
-        });
-        const room = this.drone.subscribe("observable-room");
-        room.on('data', (data, user) => {
-            console.log(data);
-            // console.log(user);s
-            const messages = this.state.messages;
-            messages.push ({user, text: data});
-            this.setState({messages});
-        });
-    }
-
-    sendMessage = (message) =>{
-        this.drone.publish({
-            room: "observable-room",
-            message
-          });
-    }
-
-    render() {
-        console.log(this.state.messages);
-        return (
-            <div className='App'>
-                <div className='heading'><h1>Chat App</h1></div>
-                <Messages messages={this.state.messages} user={this.state.user}/>
-                <InputField sendMessage={this.sendMessage}/>
-            </div>
-        )
-    }
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<LoginPage transferUserInfo={transferUserInfo} />} />
+                <Route path='/ChatRoom' element={<ChatRoom user={user} />} />
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
-export default App;
+export default App

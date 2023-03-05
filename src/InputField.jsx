@@ -14,6 +14,7 @@ const InputField = ({sendMessage}) => {
                 <input
                     type="text"
                     placeholder="Type your messege here"
+                    autoFocus={true}
                 />
                 <button>Send</button>
             </form>
