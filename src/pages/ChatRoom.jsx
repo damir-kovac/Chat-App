@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import InputField from '../InputField'
 import Messages from '../Messages'
 
@@ -38,18 +39,27 @@ class ChatRoom extends Component {
         this.initialize();
         const color = this.state.userInfo.color;
 
-        return (
-            <div className='App'>
-                <div className='heading'>
-                    <p>Logged in as:  
-                        <span style={{backgroundColor: color}}>{this.state.userInfo.name}</span>
-                    </p>
-                    <h3> Chat Room </h3>
+        if(this.state.userInfo.name){
+            return (
+                <div className='App'>
+                    <div className='heading boxStyling'>
+                        <p>Logged in as:  
+                            <span style={{backgroundColor: color}}>{this.state.userInfo.name}</span>
+                        </p>
+                        <h3> Chat Room </h3>
+                    </div>
+                    <Messages messages={this.state.messages} userInfo={this.state.userInfo}/>
+                    <InputField sendMessage={this.sendMessage}/>
                 </div>
-                <Messages messages={this.state.messages} userInfo={this.state.userInfo}/>
-                <InputField sendMessage={this.sendMessage}/>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div id='noUser' className='boxStyling'>
+                    <p>You are not logged in. Please Log in to enter Chat Room.</p>
+                    <Link to="/">Login Page</Link>
+                </div>
+            )
+        }
     }
 }
 

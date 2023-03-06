@@ -9,7 +9,7 @@ const InputField = ({sendMessage}) => {
     };
 
     return (
-        <div id="inputField">
+        <div id="inputField" className="boxStyling">
             <form onSubmit={formSubmit}>
                 <input
                     type="text"

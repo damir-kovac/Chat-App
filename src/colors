@@ -1,8 +1,7 @@
-red = rgba(235, 98, 98, 0.52);
-blue= rgba(61, 134, 211, 0.52);
-green= rgba(87, 231, 113, 0.52);
-yellow = rgba(227, 230, 45, 0.527);
-purple = rgba(157, 89, 235, 0.527);
-grey = rgba(138, 138, 138, 0.51);
-brown = rgba(152, 103, 40, 0.523);
-orange = rgba(255, 166, 0, 0.677);
+const red = "rgba(235, 98, 98, 0.52)";
+const blue= "rgba(61, 134, 211, 0.52)";
+const green= "rgba(87, 231, 113, 0.52)";
+const yellow = "rgba(227, 230, 45, 0.527)";
+const purple = "rgba(157, 89, 235, 0.527)";
+const grey = "rgba(138, 138, 138, 0.51)";
+const orange = "rgba(255, 166, 0, 0.677)";
