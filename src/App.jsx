@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import ChatRoom from './pages/ChatRoom'
 import LoginPage from './pages/LoginPage'
 
@@ -12,12 +12,12 @@ const App = () => {
     }
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
-                <Route path='/' element={<LoginPage transferUserInfo={transferUserInfo} />} />
+                <Route exact path='/' element={<LoginPage transferUserInfo={transferUserInfo} />} />
                 <Route path='/ChatRoom' element={<ChatRoom user={user} />} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
