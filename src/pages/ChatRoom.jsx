@@ -6,17 +6,6 @@ import Messages from '../Messages'
 
 class ChatRoom extends Component {
 
-    initialize = () =>{
-        this.drone.on('open', error => {
-            const user = {...this.state.userInfo, id:this.drone.clientId};
-            this.setState({userInfo: user});
-        });
-        this.room.on('data', (data, user) => {
-            const messages = [...this.state.messages, {user, text: data}];
-            this.setState({messages: messages});
-        });
-    }
-
     sendMessage = (message) =>{
         this.drone.publish({
             room: "observable-room",
@@ -34,9 +23,18 @@ class ChatRoom extends Component {
     });
     room = this.drone.subscribe("observable-room");
 
+    componentDidMount(){
+        this.drone.on('open', error => {
+            const user = {...this.state.userInfo, id:this.drone.clientId};
+            this.setState({userInfo: user});
+        });
+        this.room.on('data', (data, user) => {
+            const messages = [...this.state.messages, {user, text: data}];
+            this.setState({messages: messages});
+        });
+    }
 
     render() {
-        this.initialize();
         const color = this.state.userInfo.color;
 
         if(this.state.userInfo.name){
